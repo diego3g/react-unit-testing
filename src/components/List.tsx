@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 type ListProps = {
   initialItems: string[]
@@ -6,7 +6,11 @@ type ListProps = {
 
 function List({ initialItems }: ListProps) {
   const [newItem, setNewItem] = useState('');
-  const [list, setList] = useState(initialItems);
+  const [list, setList] = useState<string[]>([]);
+
+  useEffect(() => {
+    setList(initialItems);
+  })
 
   function addToList() {
     setTimeout(() => {
@@ -16,7 +20,7 @@ function List({ initialItems }: ListProps) {
 
   function removeFromList(item: string) {
     setTimeout(() => {
-      setList(state => state.filter(item => item !== item));
+      setList(state => state.filter(listItem => listItem !== item));
     }, 500)
   }
 

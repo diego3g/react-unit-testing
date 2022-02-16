@@ -30,7 +30,7 @@ describe('List Component', () => {
     })
   });
 
-  it('should be able to add remove item from the list', async () => {
+  it('should be able to remove item from the list', async () => {
     const { getAllByText, queryByText } = render(<List initialItems={['Diego']} />)
 
     const removeButtons = getAllByText('Remover');
