@@ -4,16 +4,17 @@ import List from './List'
 
 describe('List Component', () => {
   it('should render list items', async () => {
-    const { getByText, rerender } = render(<List initialItems={['Diego', 'Rodz', 'Mayk']} />)
+    const { getByText, rerender, unmount } = render(<List initialItems={['Diego', 'Rodz', 'Mayk']} />)
 
     expect(getByText('Diego')).toBeInTheDocument()
     expect(getByText('Rodz')).toBeInTheDocument()
     expect(getByText('Mayk')).toBeInTheDocument()
 
+    unmount()
     rerender(<List initialItems={['Julia']} />)
 
-    expect(screen.getByText('Julia')).toBeInTheDocument()
     expect(screen.queryByText('Mayk')).not.toBeInTheDocument()
+    expect(screen.getByText('Julia')).toBeInTheDocument()
   });
 
   it('should be able to add new item to the list', async () => {
